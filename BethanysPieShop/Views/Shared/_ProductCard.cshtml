@@ -1,0 +1,30 @@
+﻿@model Product
+
+<div class="col product" style="box-shadow: 0px 4px 8px 0px rgba(91, 116, 130, 0.08);">
+    <div class="card pie-card">
+        <img src="@Model.ImageThumbnailUrl" class="card-img-top" alt="@Model.Name">
+        <div class="card-body pie-button ">
+            <h4 class="d-grid">
+            </h4>
+
+            <div class="d-flex justify-content-between align-content-start align-items-lg-start mt-2">
+
+                <div class="d-flex flex-column">
+
+                    <h2 class="text-start">
+                        <a href="/product/@Model.PieId" class="pie-link pointer-event">@Model.Name</a>
+                    </h2>
+                    <p>@Model.Category.CategoryName</p>
+                </div>
+                <h5 class="text-nowrap"  padding:6px; color:white">
+                    @Model.Price.ToString("c")
+                </h5>
+            </div>
+
+            <p>
+                @Model.ShortDescription
+                <a href="/product/@Model.PieId" asp- class="pie-link pointer-event fw-bold">...more</a>
+            </p>
+        </div>
+    </div>
+</div>

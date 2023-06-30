@@ -1,0 +1,61 @@
+﻿@model CartViewModel
+
+<div>
+    <div class="d-flex align-items-center justify-content-between">
+
+    <h1>Cart Items</h1>
+    <div class="d-flex gap-2">
+        <a href="/checkout">Checkout</a>
+        <span>
+            Total: @Model.CartTotal
+
+        </span>
+
+    </div>
+        
+    </div>
+
+    @if (Model != null && Model.CartItemsRepository.AllCartItems.Any())
+    {
+        <table class="table">
+            <thead class="thead-dark">
+                <tr style="background-color: #36302C; border-bottom:1px solid black">
+                    <th scope="col" style="color:white">#</th>
+                    <th scope="col" style="color:white">Image</th>
+                    <th scope="col" style="color:white">Name</th>
+                    <th scope="col" style="color:white">Category</th>
+                    <th scope="col" style="color:white">Price</th>
+                    <th scope="col" style="color:white">Quantity</th>
+                    <th scope="col" style="color:white">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.CartItemsRepository.AllCartItems)
+                {
+                    <tr style="border-bottom: 1px solid black; margin-bottom:10px">
+                        <th scope="row">1</th>
+                        <td><img alt="item-cart" src="@item.Product.ImageThumbnailUrl" width="100" /></td>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Product?.Category?.CategoryName</td>
+                        <td>@item.Product.Price.ToString("c")</td>
+                        <td>@item.Quantity</td>
+                        <td class="d-flex align-items-center gap-4" style="border:0">
+                            <a  class="btn btn-secondary" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Product.PieId">Remove</a>
+                            <input type="number" value="1" style="border:0; width:100px;" class="cart-quantity"/>
+                        </td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <p>No cart items found.</p>
+    }
+
+</div>

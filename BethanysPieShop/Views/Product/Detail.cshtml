@@ -1,0 +1,28 @@
+﻿@model Product
+
+<div class="col mt-5">
+    <h2>@Model?.Category?.CategoryName</h2>
+    <div class="d-flex flex-column flex-md-row justify-content-between gap-4">
+        <img src="@Model.ImageThumbnailUrl" class="card-img-top" alt="@Model.Name" width="400" />
+        <div class="card-body pie-button">
+            <h4 class="d-grid"></h4>
+            <div class="d-flex justify-content-between mt-2">
+                <div class="d-flex flex-column">
+                    <h2 class="text-start">
+                        <a class="pie-link">@Model.Name</a>
+                    </h2>
+                    <div class="d-flex align-items-start gap-2">
+
+                        <p>@Model?.Category?.Description</p>
+                    </div>
+                </div>
+                <h5 class="text-nowrap">
+                    @Model.Price.ToString("c")
+                </h5>
+            </div>
+            <p>@Model.LongDescription</p>
+            <a  class="btn btn-secondary" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.PieId">Add to cart</a>
+            
+        </div>
+    </div>    
+</div>

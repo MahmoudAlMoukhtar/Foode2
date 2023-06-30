@@ -1,0 +1,30 @@
+﻿@model BethanysPieShop.ViewModels.PieListViewModel
+<style>
+/*    .product:hover {
+        background-color: #C87D52;
+        transition:1s
+
+    }*/
+
+</style>
+
+<section id="hero_section" class="d-flex justify-content-center align-items-center" style="background-color: #2eab93 ">
+    
+</section>
+
+    @*<h1>@Model.CurrentCategory</h1>*@
+    <div class="row row-cols-1 row-cols-md-3 g-4 py-4">
+
+
+        @if (Model.Pies != null && Model.Pies.Any())
+        {
+            @foreach (var product in Model.Pies)
+            {
+                @await Html.PartialAsync("_ProductCard", product);
+            }
+        }
+        else
+        {
+            <p>No products found.</p>
+        }
+    </div>
